@@ -1,10 +1,12 @@
 package app
 
 import (
+	"fmt"
+	"net/http"
 	"strings"
 
+	"github.com/PuerkitoBio/goquery"
 	"github.com/andrewarrow/feedback/router"
-	"github.com/gocolly/colly"
 )
 
 func Core(c *router.Context, second, third string) {
@@ -89,21 +91,19 @@ func handleCoreStart(c *router.Context) {
 func handleAddPost(c *router.Context) {
 	c.ReadJsonBodyIntoParams()
 	asin, _ := c.Params["asin"].(string)
+
 	url := "https://www.amazon.com/dp/" + asin
+	resp, _ := http.Get(url)
+	defer resp.Body.Close()
+	doc, _ := goquery.NewDocumentFromReader(resp.Body)
+	title := strings.TrimSpace(doc.Find("#productTitle").Text())
+	imageURL, _ := doc.Find("#landingImage").Attr("src")
 
-	c := colly.NewCollector()
-	var title string
-	var imageURL string
-	c.OnHTML("#productTitle", func(e *colly.HTMLElement) {
-		title = strings.TrimSpace(e.Text)
-	})
-	c.OnHTML("#landingImage", func(e *colly.HTMLElement) {
-		imageURL = e.Attr("src")
-	})
-	c.Visit(url)
-
-	c.Params["original_title"] = title
+	fmt.Println("11", imageURL, title, asin)
+	//c.FreeFormUpdate("update products set photo=$1,original_title=$2 where asin=$3", imageURL, title, asin)
 	c.Params["photo"] = imageURL
+	c.Params["original_title"] = title
+
 	c.Params["user_id"] = c.User["id"]
 	c.ValidateAndInsert("product")
 	send := map[string]any{}
