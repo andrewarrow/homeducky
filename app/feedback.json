@@ -1,6 +1,6 @@
 {
   "footer": "github.com/andrewarrow/feedback",
-  "title": "homeducky",
+  "title": "Stand Steady PowerPro Rolling Charging Station | homeducky.com",
   "routes": [{"root": "sessions", "paths": [
                      {"verb": "GET", "second": "", "third": ""},
                      {"verb": "GET", "second": "*", "third": ""},

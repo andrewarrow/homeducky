@@ -9,3 +9,12 @@ div p-0
           Stand Steady PowerPro Rolling Charging Station
       div mt-6 text-2xl text-center
         <a href="https://www.amazon.com/gp/product/B0B46X31WP?tag=homeduckydotc-20"><img src="https://i.imgur.com/q76shqC.png"/></a>
+      div mt-3 mb-64 space-y-3
+        p
+          The Stand Steady PowerPro Rolling Charging Station has really changed our
+          family life. No longer does any kid complain about not having a charger.
+          It's so big it has like this gravitation pull to it. Everyone knows where
+          it is, you can't lose it.
+        p
+          Also it raises the level of the plugs up to kid eye level.
+
