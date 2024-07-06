@@ -4,7 +4,7 @@ module homeducky
 
 go 1.21.0
 
-require github.com/andrewarrow/feedback v0.0.0-20240630205923-a0616bffee08
+require github.com/andrewarrow/feedback v0.0.0-20240706225756-5683db3879a6
 
 require (
 	cloud.google.com/go v0.112.0 // indirect
