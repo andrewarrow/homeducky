@@ -9,7 +9,7 @@ func Core(c *router.Context, second, third string) {
 		handleCoreStart(c)
 		return
 	}
-	if second == "about-us" && third == "" && c.Method == "GET" {
+	if second == "about" && third == "" && c.Method == "GET" {
 		handleAboutUs(c)
 		return
 	}
@@ -73,7 +73,7 @@ func handleTerms(c *router.Context) {
 }
 func handleAboutUs(c *router.Context) {
 	send := map[string]any{}
-	c.SendContentInLayout("about_us.html", send, 200)
+	c.SendContentInLayout("about.html", send, 200)
 }
 func handleStart(c *router.Context) {
 	send := map[string]any{}

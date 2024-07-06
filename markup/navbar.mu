@@ -8,6 +8,8 @@
     div navbar-end
       div hidden md:block flex space-x-3
         {{ if .user }}
+          a href=/core/start
+            Dashboard
           a href=/ id=logout
             Logout
         {{ else }}

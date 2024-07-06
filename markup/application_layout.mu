@@ -1,4 +1,4 @@
-html data-theme=garden
+html data-theme=light
   head
     {{ $build := index . "build" }}
     {{ $og := index . "og" }}
@@ -27,14 +27,10 @@ html data-theme=garden
     div 
       div pb-32 footer items-center p-10 bg-base-200 text-base-content rounded
         div items-center grid-flow-col
-          Copyright &copy; 2024 - All right reserved by andrewarrow.dev
+          Copyright &copy; 2024 - All right reserved by homeducky.com
         div grid-flow-col gap-4 md:place-self-center md:justify-self-end
-          a href=https://andrewarrow.dev/ link link-hover
+          a href=/core/about link link-hover
             About Us
-          a href=https://andrewarrow.dev/ link link-hover
-            Pricing
-          a href=https://andrewarrow.dev/ link link-hover
-            Terms & Conditions
-          a href=https://andrewarrow.dev/ link link-hover
-            Privacy Policy
+          a href=/core/login link link-hover
+            Login
     {{ index . "wasm" }}
