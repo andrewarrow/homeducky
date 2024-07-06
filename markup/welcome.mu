@@ -17,4 +17,6 @@ div p-0
           it is, you can't lose it.
         p
           Also it raises the level of the plugs up to kid eye level.
-
+        p
+          It's kinda on the expensive side but we just did a remodel and
+          in the grand scheme of things, this money was well worth it!
