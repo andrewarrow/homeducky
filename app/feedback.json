@@ -72,6 +72,25 @@
       ]
     },
     {
+      "name": "product",
+      "fields": [
+        {
+          "name": "asin",
+          "flavor": "name",
+          "index": "unique"
+        },
+        {
+          "name": "user_id",
+          "flavor": "int",
+          "index": "yes"
+        },
+        {
+          "name": "title",
+          "flavor": "name"
+        }
+      ]
+    },
+    {
       "name": "cookie_token",
       "fields": [
         {

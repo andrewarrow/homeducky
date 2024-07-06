@@ -16,6 +16,12 @@ func RegisterEvents() {
 		Global.Location.Set("href", "/core/start")
 	}
 	if Global.Start == "start.html" {
+		a := wasm.NewAutoForm("add")
+		a.Path = "/core/add"
+		a.Clear = true
+		a.After = func(content string) {
+		}
+		Global.AddAutoForm(a)
 	} else if Global.Start == "login.html" {
 		Global.AutoForm("login", "core", nil, afterLogin)
 	} else if Global.Start == "register.html" {

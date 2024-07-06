@@ -5,10 +5,6 @@ import (
 )
 
 func Core(c *router.Context, second, third string) {
-	if second == "start" && third == "" && c.Method == "GET" {
-		handleCoreStart(c)
-		return
-	}
 	if second == "about" && third == "" && c.Method == "GET" {
 		handleAboutUs(c)
 		return
@@ -39,6 +35,17 @@ func Core(c *router.Context, second, third string) {
 	}
 	if second == "logout" && third == "" && c.Method == "DELETE" {
 		router.DestroySession(c)
+		return
+	}
+	if router.NotLoggedIn(c) {
+		return
+	}
+	if second == "start" && third == "" && c.Method == "GET" {
+		handleCoreStart(c)
+		return
+	}
+	if second == "add" && third == "" && c.Method == "POST" {
+		handleAddPost(c)
 		return
 	}
 	c.NotFound = true
@@ -77,5 +84,14 @@ func handleAboutUs(c *router.Context) {
 }
 func handleStart(c *router.Context) {
 	send := map[string]any{}
+	items := c.All("product", "where user_id=$1 order by created_at desc", "", c.User["id"])
+	send["items"] = items
 	c.SendContentInLayout("start.html", send, 200)
+}
+func handleAddPost(c *router.Context) {
+	c.ReadJsonBodyIntoParams()
+	c.Params["user_id"] = c.User["id"]
+	c.ValidateAndInsert("product")
+	send := map[string]any{}
+	c.SendContentAsJson(send, 200)
 }
