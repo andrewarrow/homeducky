@@ -18,5 +18,7 @@ div p-0
         p
           Also it raises the level of the plugs up to kid eye level.
         p
-          It's kinda on the expensive side but we just did a remodel and
+          It's kinda on the <a class="link" href="https://www.amazon.com/gp/product/B0B46X31WP?tag=homeduckydotc-20">expensive side</a> but we just did a remodel and
           in the grand scheme of things, this money was well worth it!
+        p text-center
+          <a class="btn btn-primary" href="https://www.amazon.com/gp/product/B0B46X31WP?tag=homeduckydotc-20">Buy Now</a>
