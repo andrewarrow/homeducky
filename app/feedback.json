@@ -85,6 +85,14 @@
           "index": "yes"
         },
         {
+          "name": "original_title",
+          "flavor": "name"
+        },
+        {
+          "name": "photo",
+          "flavor": "name"
+        },
+        {
           "name": "title",
           "flavor": "name"
         }

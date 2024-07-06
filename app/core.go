@@ -1,7 +1,10 @@
 package app
 
 import (
+	"strings"
+
 	"github.com/andrewarrow/feedback/router"
+	"github.com/gocolly/colly"
 )
 
 func Core(c *router.Context, second, third string) {
@@ -85,6 +88,22 @@ func handleCoreStart(c *router.Context) {
 }
 func handleAddPost(c *router.Context) {
 	c.ReadJsonBodyIntoParams()
+	asin, _ := c.Params["asin"].(string)
+	url := "https://www.amazon.com/dp/" + asin
+
+	c := colly.NewCollector()
+	var title string
+	var imageURL string
+	c.OnHTML("#productTitle", func(e *colly.HTMLElement) {
+		title = strings.TrimSpace(e.Text)
+	})
+	c.OnHTML("#landingImage", func(e *colly.HTMLElement) {
+		imageURL = e.Attr("src")
+	})
+	c.Visit(url)
+
+	c.Params["original_title"] = title
+	c.Params["photo"] = imageURL
 	c.Params["user_id"] = c.User["id"]
 	c.ValidateAndInsert("product")
 	send := map[string]any{}
