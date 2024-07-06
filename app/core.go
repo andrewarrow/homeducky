@@ -51,11 +51,6 @@ func Core(c *router.Context, second, third string) {
 	c.NotFound = true
 }
 
-func handleCoreStart(c *router.Context) {
-
-	send := map[string]any{}
-	c.SendContentInLayout("start.html", send, 200)
-}
 func handleIndex(c *router.Context) {
 	send := map[string]any{}
 	c.SendContentInLayout("welcome.html", send, 200)
@@ -82,7 +77,7 @@ func handleAboutUs(c *router.Context) {
 	send := map[string]any{}
 	c.SendContentInLayout("about.html", send, 200)
 }
-func handleStart(c *router.Context) {
+func handleCoreStart(c *router.Context) {
 	send := map[string]any{}
 	items := c.All("product", "where user_id=$1 order by created_at desc", "", c.User["id"])
 	send["items"] = items
