@@ -1,0 +1,18 @@
+go mod tidy
+go build
+./homeducky render
+cp main.go save_main
+cp wasm/main.go .
+GOOS=js GOARCH=wasm go build -ldflags="-s -w -X main.useLive=false" -o assets/other/json.wasm 
+mv save_main main.go
+if [ $? -eq 0 ]; then
+    cd assets/other
+    rm json.wasm.gz
+    gzip -f json.wasm
+    cd ../..
+    tailwindcss -i assets/css/tail.components.css -o assets/css/tail.min.css --minify
+    uuid=$(uuidgen); GOOS=linux GOARCH=amd64 go build -ldflags="-X main.buildTag=$uuid"
+    cp homeducky ../devops/web/web
+    echo 3
+fi
+    
