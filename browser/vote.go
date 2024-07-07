@@ -22,6 +22,7 @@ func (p *Product) click() {
 	m := map[string]any{}
 	go func() {
 		asin := p.Id[5:]
+		Document.Id("vote-" + asin).AddClass("hidden")
 		js, _ := wasm.DoPost("/core/asin/"+asin, m)
 		var m map[string]any
 		json.Unmarshal([]byte(js), &m)
