@@ -5,7 +5,8 @@ div p-0 id=top
     div w-full md:w-1/2
       div mt-6 text-2xl text-center
         div bg-purple-500 rounded-lg p-3
-          HomeDucky.com - One Product a Day
+          a href=/
+            HomeDucky.com - One Product a Day
         div bg-indigo-100 rounded-lg p-3 text-center
           p
             {{ $item.scheduled_for_human }}
