@@ -127,11 +127,23 @@ func handleAddPost(c *router.Context) {
 	req.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
 
 	client := &http.Client{}
-	resp, _ := client.Do(req)
+	imageURL := ""
+	title := ""
+	count := 0
+	for {
+		resp, _ := client.Do(req)
 
-	defer resp.Body.Close()
-	imageURL, title := parseAmazon(resp.Body)
-
+		imageURL, title = parseAmazon(resp.Body)
+		resp.Body.Close()
+		if imageURL != "" {
+			break
+		}
+		time.Sleep(time.Second * 1)
+		count++
+		if count > 9 {
+			break
+		}
+	}
 	//fmt.Println("11", imageURL, title, asin)
 	//c.FreeFormUpdate("update products set photo=$1,original_title=$2 where asin=$3", imageURL, title, asin)
 	if imageURL == "" {
