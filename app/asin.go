@@ -9,6 +9,12 @@ import (
 )
 
 func handleAsinPost(c *router.Context, asin string) {
+	if len(c.User) == 0 {
+		send := map[string]any{}
+		send["delta"] = "Please login first."
+		c.SendContentAsJson(send, 422)
+		return
+	}
 	devMode := os.Getenv("DEV_MODE") == "true"
 	one := c.One("vote", "where user_id=$1", c.User["id"])
 	if len(one) > 0 {
