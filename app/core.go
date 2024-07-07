@@ -92,6 +92,8 @@ func handleAsin(c *router.Context, asin string) {
 		c.SendContentInLayout("404.html", send, 404)
 		return
 	}
+	c.LayoutMap["og"] = item["photo"]
+	c.Title = fmt.Sprintf("%s | homeducky.com", item["title"])
 	send["item"] = item
 	c.SendContentInLayout("asin.html", send, 200)
 }

@@ -1,5 +1,6 @@
 div p-0 
   {{ template "navbar" . }}
+  {{ $item := .item }}
   div flex flex-col md:flex-row space-x-9 items-start justify-center
     div w-full md:w-1/2
       div mt-6 text-2xl text-center
@@ -7,7 +8,7 @@ div p-0
           HomeDucky.com - One Product a Day
         div bg-indigo-100 rounded-lg p-3
           {{ $item.title }}
-      div mt-6 text-2xl text-center
+      div mt-6 flex justify-center text-2xl text-center
         <a href="https://www.amazon.com/dp/B0B46X31WP?tag=homeduckydotc-20"><img src="{{$item.photo}}"/></a>
       div mt-3 mb-64 space-y-3
         p
