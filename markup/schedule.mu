@@ -1,4 +1,4 @@
-div p-0 
+div p-0 id=top
   {{ template "navbar" . }}
   {{ $items := .items }}
   div flex flex-col md:flex-row space-x-9 items-start justify-center

@@ -1,4 +1,4 @@
-div p-0 
+div p-0 id=top
   {{ template "navbar" . }}
   {{ $item := .item }}
   div flex flex-col md:flex-row space-x-9 items-start justify-center
@@ -6,8 +6,13 @@ div p-0
       div mt-6 text-2xl text-center
         div bg-purple-500 rounded-lg p-3
           HomeDucky.com - One Product a Day
-        div bg-indigo-100 rounded-lg p-3
-          {{ $item.title }}
+        div bg-indigo-100 rounded-lg p-3 text-center
+          p
+            {{ $item.scheduled_for_human }}
+          p
+            {{ $item.votes }}
+          a href=/ btn btn-accent btn-sm voter id=vote-{{$item.asin}}
+            Vote Up
       div mt-6 flex justify-center text-2xl text-center
         <a href="https://www.amazon.com/dp/{{$item.asin}}?tag=homeduckydotc-20"><img src="{{$item.photo}}"/></a>
       div mt-3 mb-64 space-y-3
