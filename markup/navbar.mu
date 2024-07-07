@@ -6,7 +6,7 @@
           img src=logo.png w-12
     div navbar-center flex hidden md:block
     div navbar-end
-      div hidden md:block flex space-x-3
+      div flex space-x-3
         {{ if .user }}
           a href=/core/start
             Dashboard
