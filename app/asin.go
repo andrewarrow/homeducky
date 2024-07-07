@@ -2,7 +2,6 @@ package app
 
 import (
 	"fmt"
-	"os"
 	"time"
 
 	"github.com/andrewarrow/feedback/router"
@@ -15,14 +14,11 @@ func handleAsinPost(c *router.Context, asin string) {
 		c.SendContentAsJson(send, 422)
 		return
 	}
-	devMode := os.Getenv("DEV_MODE") == "true"
-	one := c.One("vote", "where user_id=$1", c.User["id"])
+	//devMode := os.Getenv("DEV_MODE") == "true"
+	one := c.One("vote", "where user_id=$1 order by created_at desc", c.User["id"])
 	if len(one) > 0 {
 		ca := one["created_at"].(int64)
 		delta := time.Now().Unix() - ca
-		if devMode {
-			delta -= 25200
-		}
 		fmt.Println(ca, delta)
 		if delta < 3600 {
 			send := map[string]any{}
