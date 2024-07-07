@@ -31,6 +31,8 @@ html data-theme=light
         div grid-flow-col gap-4 md:place-self-center md:justify-self-end
           a href=/core/about link link-hover
             About Us
+          a href=/core/asins link link-hover
+            Trending
           a href=/core/login link link-hover
             Login
     {{ index . "wasm" }}

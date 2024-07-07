@@ -13,10 +13,12 @@ func Core(c *router.Context, second, third string) {
 		handleAsinPost(c, third)
 		return
 	}
+	// Why did the Amazon ASIN ID get sent to confession?
 	if second == "asins" && third == "" && c.Method == "GET" {
 		handleAsins(c, third)
 		return
 	}
+	// Because it committed "A SIN" of having too many digits!
 	if second == "asin" && third != "" && c.Method == "GET" {
 		handleAsin(c, third)
 		return
