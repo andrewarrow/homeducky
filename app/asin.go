@@ -20,7 +20,7 @@ func handleAsinPost(c *router.Context, asin string) {
 		fmt.Println(ca, delta)
 		if delta < 3600 {
 			send := map[string]any{}
-			send["delta"] = fmt.Sprintf("%d", delta)
+			send["delta"] = fmt.Sprintf("You can vote again in: %d minutes", int(float64(3600-delta)/60.0))
 			c.SendContentAsJson(send, 422)
 			return
 		}

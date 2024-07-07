@@ -5,7 +5,7 @@ module homeducky
 go 1.21.0
 
 require (
-	github.com/andrewarrow/feedback v0.0.0-20240707132637-8f19f978a030
+	github.com/andrewarrow/feedback v0.0.0-20240707133140-a098673d3e3a
 	golang.org/x/net v0.24.0
 )
 
