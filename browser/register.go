@@ -19,6 +19,10 @@ func RegisterEvents() {
 		a := wasm.NewAutoForm("add")
 		a.Path = "/core/add"
 		a.Clear = true
+		a.Before = func() string {
+			Document.Id("add-button").Set("value", "please wait...")
+			return ""
+		}
 		a.After = func(content string) {
 			Global.Location.Set("href", "/core/start")
 		}

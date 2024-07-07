@@ -11,7 +11,7 @@ div p-0
           div mt-3
             input input input-primary id=title placeholder=title autofocus=true
           div mt-6
-            input type=submit btn btn-primary value=Add
+            input id=add-button type=submit btn btn-primary value=Add
         div
           {{ range $i, $item := .items }}
             div
