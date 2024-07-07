@@ -2,6 +2,7 @@ package browser
 
 import (
 	"encoding/json"
+	"fmt"
 
 	"github.com/andrewarrow/feedback/wasm"
 )
@@ -12,6 +13,7 @@ type Product struct {
 
 func handleAsins() {
 	for _, a := range Document.Id("top").SelectAllByClass("voter") {
+		fmt.Println(a)
 		p := Product{a.Id}
 		a.EventWithId(p.click)
 	}
@@ -24,7 +26,8 @@ func (p *Product) click() {
 		js, _ := wasm.DoPost("/core/asin/"+asin, m)
 		var m map[string]any
 		json.Unmarshal([]byte(js), &m)
-		Document.Id("vote-total-"+asin).Set("innerHTML", m["votes"])
+		votes := fmt.Sprintf("%0f", m["votes"])
+		Document.Id("vote-total-"+asin).Set("innerHTML", votes)
 
 	}()
 }
