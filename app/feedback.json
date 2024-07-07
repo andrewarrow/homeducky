@@ -110,6 +110,21 @@
       ]
     },
     {
+      "name": "vote",
+      "fields": [
+        {
+          "name": "asin",
+          "flavor": "name",
+          "index": "yes"
+        },
+        {
+          "name": "user_id",
+          "flavor": "int",
+          "index": "yes"
+        }
+      ]
+    },
+    {
       "name": "cookie_token",
       "fields": [
         {

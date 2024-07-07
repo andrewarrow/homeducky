@@ -114,7 +114,7 @@ func handleAddPost(c *router.Context) {
 	one = c.One("product", "where user_id=$1", c.User["id"])
 	if len(one) > 0 {
 		ca := one["created_at"].(int64)
-		if time.Now().UTC().Unix()-ca < 86400 {
+		if time.Now().Unix()-ca < 86400 {
 			send["error"] = "try again tomorrow"
 			c.SendContentAsJson(send, 422)
 			return

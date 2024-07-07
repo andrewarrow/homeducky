@@ -23,9 +23,14 @@ func (p *Product) click() {
 	go func() {
 		asin := p.Id[5:]
 		Document.Id("vote-" + asin).AddClass("hidden")
-		js, _ := wasm.DoPost("/core/asin/"+asin, m)
+		js, code := wasm.DoPost("/core/asin/"+asin, m)
 		var m map[string]any
 		json.Unmarshal([]byte(js), &m)
+		if code != 200 {
+			delta, _ := m["delta"].(string)
+			Global.ToastFlash(delta)
+			return
+		}
 		votes := fmt.Sprintf("%0.0f", m["votes"])
 		Document.Id("vote-total-"+asin).Set("innerHTML", votes)
 

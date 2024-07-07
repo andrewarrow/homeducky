@@ -2,13 +2,33 @@ package app
 
 import (
 	"fmt"
+	"os"
+	"time"
 
 	"github.com/andrewarrow/feedback/router"
 )
 
 func handleAsinPost(c *router.Context, asin string) {
+	devMode := os.Getenv("DEV_MODE") == "true"
+	one := c.One("vote", "where user_id=$1", c.User["id"])
+	if len(one) > 0 {
+		ca := one["created_at"].(int64)
+		delta := time.Now().Unix() - ca
+		if devMode {
+			delta -= 25200
+		}
+		fmt.Println(ca, delta)
+		if delta < 3600 {
+			send := map[string]any{}
+			send["delta"] = fmt.Sprintf("%d", delta)
+			c.SendContentAsJson(send, 422)
+			return
+		}
+	}
+	c.FreeFormUpdate("insert into votes (user_id, asin) values ($1,$2)",
+		c.User["id"], asin)
 	c.FreeFormUpdate("update products set votes=votes+1 where asin=$1", asin)
-	one := c.One("product", "where asin=$1", asin)
+	one = c.One("product", "where asin=$1", asin)
 	c.SendContentAsJson(one, 200)
 }
 func handleAsin(c *router.Context, asin string) {
