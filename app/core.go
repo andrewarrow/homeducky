@@ -9,6 +9,10 @@ import (
 )
 
 func Core(c *router.Context, second, third string) {
+	if second == "asin" && third != "" && c.Method == "POST" {
+		handleAsinPost(c, third)
+		return
+	}
 	if second == "asins" && third == "" && c.Method == "GET" {
 		handleAsins(c, third)
 		return

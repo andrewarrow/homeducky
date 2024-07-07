@@ -6,6 +6,11 @@ import (
 	"github.com/andrewarrow/feedback/router"
 )
 
+func handleAsinPost(c *router.Context, asin string) {
+	send := map[string]any{}
+	c.FreeFormUpdate("update products set votes=votes+1 where asin=$1", asin)
+	c.SendContentAsJson(send, 200)
+}
 func handleAsin(c *router.Context, asin string) {
 	send := map[string]any{}
 	item := c.One("product", "where asin=$1", asin)
