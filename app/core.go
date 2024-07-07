@@ -90,6 +90,22 @@ func handleCoreStart(c *router.Context) {
 func handleAddPost(c *router.Context) {
 	c.ReadJsonBodyIntoParams()
 	asin, _ := c.Params["asin"].(string)
+	one := c.One("product", "where asin=$1", asin)
+	send := map[string]any{}
+	if len(one) > 0 {
+		send["error"] = "try another asin"
+		c.SendContentAsJson(send, 422)
+		return
+	}
+	one = c.One("product", "where user_id=$1", c.User["id"])
+	if len(one) > 0 {
+		ca := one["created_at"].(int64)
+		if time.Now().UTC().Unix()-ca < 86400 {
+			send["error"] = "try again tomorrow"
+			c.SendContentAsJson(send, 422)
+			return
+		}
+	}
 
 	url := "https://www.amazon.com/dp/" + asin
 
@@ -102,7 +118,6 @@ func handleAddPost(c *router.Context) {
 	defer resp.Body.Close()
 	imageURL, title := parseAmazon(resp.Body)
 
-	send := map[string]any{}
 	//fmt.Println("11", imageURL, title, asin)
 	//c.FreeFormUpdate("update products set photo=$1,original_title=$2 where asin=$3", imageURL, title, asin)
 	if imageURL == "" {

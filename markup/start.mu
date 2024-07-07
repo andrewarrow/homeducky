@@ -22,7 +22,7 @@ div p-0
                   <img src="{{$item.photo}}" class="w-32 h-32 rounded-lg object-cover"/>
                 div
                   p
-                    {{ $item.title }}
+                    {{ $item.asin }}
                   p text-sm text-gray-600 w-64
                     {{ $item.original_title }}
                   p text-sm text-red-600
