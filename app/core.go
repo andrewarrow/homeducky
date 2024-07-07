@@ -90,7 +90,13 @@ func handleAddPost(c *router.Context) {
 	asin, _ := c.Params["asin"].(string)
 
 	url := "https://www.amazon.com/dp/" + asin
-	resp, _ := http.Get(url)
+
+	req, _ := http.NewRequest("GET", url, nil)
+	req.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
+
+	client := &http.Client{}
+	resp, _ := client.Do(req)
+
 	defer resp.Body.Close()
 	imageURL, title := parseAmazon(resp.Body)
 
