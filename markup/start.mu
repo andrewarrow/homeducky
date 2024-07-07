@@ -14,12 +14,17 @@ div p-0
             input id=add-button type=submit btn btn-primary value=Add
         div
           {{ range $i, $item := .items }}
-            div
-              div flex
+            div 
+              div mt-3 flex space-x-6
                 div w-9
                   {{ add $i 1 }}.
                 div
                   <img src="{{$item.photo}}" class="w-32 h-32 rounded-lg object-cover"/>
                 div
-                  {{ $item.title }}
+                  p
+                    {{ $item.title }}
+                  p text-sm text-gray-600 w-64
+                    {{ $item.original_title }}
+                  p text-sm text-red-600
+                    {{ $item.scheduled_for_human }}
           {{ end }}

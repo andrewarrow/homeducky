@@ -1,7 +1,9 @@
 package app
 
 import (
+	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/andrewarrow/feedback/router"
 )
@@ -100,13 +102,33 @@ func handleAddPost(c *router.Context) {
 	defer resp.Body.Close()
 	imageURL, title := parseAmazon(resp.Body)
 
+	send := map[string]any{}
 	//fmt.Println("11", imageURL, title, asin)
 	//c.FreeFormUpdate("update products set photo=$1,original_title=$2 where asin=$3", imageURL, title, asin)
+	if imageURL == "" {
+		send["error"] = "try another asin"
+		c.SendContentAsJson(send, 422)
+		return
+	}
 	c.Params["photo"] = imageURL
 	c.Params["original_title"] = title
 
 	c.Params["user_id"] = c.User["id"]
-	c.ValidateAndInsert("product")
-	send := map[string]any{}
+	c.Params["scheduled_for"] = time.Now()
+	items := c.FreeFormSelect("select max(scheduled_for) as scheduled_for from products")
+	if len(items) > 0 {
+		max := items[0]["scheduled_for"]
+		if max != nil {
+			maxTime := max.(time.Time)
+			fmt.Println("scheduled_for", maxTime)
+			c.Params["scheduled_for"] = maxTime.Add(time.Hour * 24)
+		}
+	}
+	msg := c.ValidateAndInsert("product")
+	if msg != "" {
+		send["error"] = "try another asin"
+		c.SendContentAsJson(send, 422)
+		return
+	}
 	c.SendContentAsJson(send, 200)
 }

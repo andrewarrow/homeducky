@@ -76,7 +76,8 @@
       "fields": [
         {
           "name": "asin",
-          "flavor": "name"
+          "flavor": "name",
+          "index": "unique"
         },
         {
           "name": "user_id",
@@ -86,6 +87,12 @@
         {
           "name": "original_title",
           "flavor": "name"
+        },
+        {
+          "name": "scheduled_for",
+          "flavor": "timestamp",
+          "index": "yes",
+          "null": "yes"
         },
         {
           "name": "photo",
