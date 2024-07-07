@@ -23,5 +23,5 @@ func handleAsins(c *router.Context, asin string) {
 	items := c.All("product", "order by scheduled_for desc", "")
 	c.Title = fmt.Sprintf("Next Up Products")
 	send["items"] = items
-	c.SendContentInLayout("asins.html", send, 200)
+	c.SendContentInLayout("schedule.html", send, 200)
 }
