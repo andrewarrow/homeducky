@@ -85,6 +85,11 @@
           "index": "yes"
         },
         {
+          "name": "votes",
+          "flavor": "int",
+          "index": "yes"
+        },
+        {
           "name": "original_title",
           "flavor": "name"
         },

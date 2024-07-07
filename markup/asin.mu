@@ -9,11 +9,11 @@ div p-0
         div bg-indigo-100 rounded-lg p-3
           {{ $item.title }}
       div mt-6 flex justify-center text-2xl text-center
-        <a href="https://www.amazon.com/dp/B0B46X31WP?tag=homeduckydotc-20"><img src="{{$item.photo}}"/></a>
+        <a href="https://www.amazon.com/dp/{{$item.asin}}?tag=homeduckydotc-20"><img src="{{$item.photo}}"/></a>
       div mt-3 mb-64 space-y-3
         p
           {{ $item.original_title }}
         p text-center
-          <a class="btn btn-primary" href="https://www.amazon.com/dp/B0B46X31WP?tag=homeduckydotc-20">Buy Now</a>
+          <a class="btn btn-primary" href="https://www.amazon.com/dp/{{$item.asin}}?tag=homeduckydotc-20">Buy Now</a>
         p text-center
           <a class="btn btn-secondary" href="/core/about">About Us</a>
