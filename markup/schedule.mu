@@ -9,7 +9,7 @@ div p-0 id=top
             HomeDucky.com - One Product a Day
       {{ range $i, $item := $items }}
         div bg-indigo-100 rounded-lg p-3 text-center
-          p
+          p font-allan text-3xl
             {{ $item.scheduled_for_human }}
           p id=vote-total-{{$item.asin}}
             {{ $item.votes }}

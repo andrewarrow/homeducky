@@ -12,7 +12,7 @@ div p-0
         div mt-9 font-mono
           p
             Then you can add any amazon product you think should be on the homepage.
-          p
+          p mt-6
             The code is open source 
             a href=https://github.com/andrewarrow/homeducky
               https://github.com/andrewarrow/homeducky

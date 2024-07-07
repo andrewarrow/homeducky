@@ -11,7 +11,10 @@ module.exports = {
         'a-good': '#00364d'
       },
       fontFamily: {
-        pragmatica: ['Pragmatica'],
+        poppins: ['Poppins'],
+        montserrat: ['Montserrat'],
+        allan: ['Allan'],
+        permanent: ['Permanent Marker'],
         familjen: ['Familjen Grotesk'],
       },
     },
