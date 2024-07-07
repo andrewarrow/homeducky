@@ -1,6 +1,10 @@
 package browser
 
-import "github.com/andrewarrow/feedback/wasm"
+import (
+	"encoding/json"
+
+	"github.com/andrewarrow/feedback/wasm"
+)
 
 type Product struct {
 	Id string
@@ -15,5 +19,12 @@ func handleAsins() {
 
 func (p *Product) click() {
 	m := map[string]any{}
-	go wasm.DoPost("/core/asin/"+p.Id[5:], m)
+	go func() {
+		asin := p.Id[5:]
+		js, _ := wasm.DoPost("/core/asin/"+asin, m)
+		var m map[string]any
+		json.Unmarshal([]byte(js), &m)
+		Document.Id("vote-total-"+asin).Set("innerHTML", m["votes"])
+
+	}()
 }

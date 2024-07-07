@@ -10,7 +10,7 @@ div p-0 id=top
         div bg-indigo-100 rounded-lg p-3 text-center
           p
             {{ $item.scheduled_for_human }}
-          p
+          p id=vote-total-{{$item.asin}}
             {{ $item.votes }}
           a href=/ btn btn-accent btn-sm voter id=vote-{{$item.asin}}
             Vote Up
