@@ -19,5 +19,7 @@ div p-0
                 div w-9
                   {{ add $i 1 }}.
                 div
+                  img src={{$item.photo}} w-32 h-32 rounded-lg object-cover
+                div
                   {{ $item.title }}
           {{ end }}

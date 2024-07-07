@@ -76,8 +76,7 @@
       "fields": [
         {
           "name": "asin",
-          "flavor": "name",
-          "index": "unique"
+          "flavor": "name"
         },
         {
           "name": "user_id",

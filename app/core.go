@@ -1,11 +1,8 @@
 package app
 
 import (
-	"fmt"
 	"net/http"
-	"strings"
 
-	"github.com/PuerkitoBio/goquery"
 	"github.com/andrewarrow/feedback/router"
 )
 
@@ -95,11 +92,9 @@ func handleAddPost(c *router.Context) {
 	url := "https://www.amazon.com/dp/" + asin
 	resp, _ := http.Get(url)
 	defer resp.Body.Close()
-	doc, _ := goquery.NewDocumentFromReader(resp.Body)
-	title := strings.TrimSpace(doc.Find("#productTitle").Text())
-	imageURL, _ := doc.Find("#landingImage").Attr("src")
+	imageURL, title := parseAmazon(resp.Body)
 
-	fmt.Println("11", imageURL, title, asin)
+	//fmt.Println("11", imageURL, title, asin)
 	//c.FreeFormUpdate("update products set photo=$1,original_title=$2 where asin=$3", imageURL, title, asin)
 	c.Params["photo"] = imageURL
 	c.Params["original_title"] = title
