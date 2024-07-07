@@ -15,7 +15,7 @@ div p-0
         div
           {{ range $i, $item := .items }}
             div 
-              div mt-3 flex space-x-6
+              a block href=/core/asin/{{$item.asin}} mt-3 flex space-x-6
                 div w-9
                   {{ add $i 1 }}.
                 div

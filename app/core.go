@@ -9,6 +9,10 @@ import (
 )
 
 func Core(c *router.Context, second, third string) {
+	if second == "asin" && third != "" && c.Method == "GET" {
+		handleAsin(c, third)
+		return
+	}
 	if second == "about" && third == "" && c.Method == "GET" {
 		handleAboutUs(c)
 		return
@@ -80,6 +84,16 @@ func handleTerms(c *router.Context) {
 func handleAboutUs(c *router.Context) {
 	send := map[string]any{}
 	c.SendContentInLayout("about.html", send, 200)
+}
+func handleAsin(c *router.Context, asin string) {
+	send := map[string]any{}
+	item := c.One("product", "where asin=$1", asin)
+	if len(item) == 0 {
+		c.SendContentInLayout("404.html", send, 404)
+		return
+	}
+	send["item"] = item
+	c.SendContentInLayout("asin.html", send, 200)
 }
 func handleCoreStart(c *router.Context) {
 	send := map[string]any{}
