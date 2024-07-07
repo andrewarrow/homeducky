@@ -10,5 +10,9 @@ div p-0
           a href=/core/register link
             create an account
         div mt-9 font-mono
-          Then you can add any amazon product you think should be
-          on the homepage.
+          p
+            Then you can add any amazon product you think should be on the homepage.
+          p
+            The code is open source 
+            a href=https://github.com/andrewarrow/homeducky
+              https://github.com/andrewarrow/homeducky
