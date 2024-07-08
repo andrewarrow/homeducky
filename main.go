@@ -40,6 +40,7 @@ func main() {
 		r := router.NewRouter("DATABASE_URL", embeddedFile)
 		r.Paths["/"] = app.Welcome
 		r.Paths["core"] = app.Core
+		r.Paths["sitemap"] = app.Sitemap
 		//r.Paths["api"] = app.HandleApi
 		//r.Paths["login"] = app.Login
 		//r.Paths["register"] = app.Register
