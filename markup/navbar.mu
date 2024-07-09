@@ -17,9 +17,6 @@
             Login
         {{ end }}
   div text-center mt-2 bg-indigo-200 rounded-lg
-    Voting Ends in 
     span id=voting-ends
-      Testing 0
-    span
-      ...
+      Voting Ends in ...
   {{ end }}
