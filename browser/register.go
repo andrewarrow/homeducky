@@ -9,6 +9,7 @@ var Document *wasm.Document
 
 func RegisterEvents() {
 	LogoutEvents()
+	go checkTime()
 	afterRegister := func(id int64) {
 		Global.Location.Set("href", "/core/start")
 	}
