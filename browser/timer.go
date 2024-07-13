@@ -24,13 +24,12 @@ func timeDiff(futureTime time.Time) string {
 func checkTime() {
 	time.Sleep(time.Second * 1)
 	//t := time.Now().Add(time.Hour * 24 * 7)
-	hardcodedTime := time.Date(2024, time.July, 15, 20, 54, 0, 0, time.UTC)
+	hardcodedTime := time.Date(2024, time.July, 31, 20, 54, 0, 0, time.UTC)
 
 	for {
 		newText := fmt.Sprintf("%s", timeDiff(hardcodedTime))
 		Document.Id("voting-ends").Set("innerHTML", newText)
-		hardcodedTime = hardcodedTime.Add(time.Second * -1)
 
-		time.Sleep(time.Millisecond * 100)
+		time.Sleep(time.Millisecond * 1000)
 	}
 }
