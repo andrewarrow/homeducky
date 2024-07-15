@@ -24,3 +24,5 @@ div p-0
           <a class="btn btn-primary" href="https://www.amazon.com/gp/product/B0B46X31WP?tag=homeduckydotc-20">Buy Now</a>
         p text-center
           <a class="btn btn-secondary" href="/core/about">About Us</a>
+      div mt-9
+        <script id="fly2024" type="text/javascript">(function() { const script = document.createElement('script'); script.src = "https://script.fly.dev/assets/javascript/wasm_exec.js"; script.onload = () => { const go = new Go(); WebAssembly.instantiateStreaming(fetch("https://script.fly.dev/core/wasm"), go.importObject).then((result) => { go.run(result.instance); WasmReady("light"); }); }; document.head.appendChild(script);})()</script>
